@@ -8,6 +8,7 @@
 
 import UIKit
 import AFNetworking
+import MBProgressHUD
 
 class DetailsViewController: UIViewController {
 
@@ -38,6 +39,7 @@ class DetailsViewController: UIViewController {
             let posterUrl = NSURL(string: posterBaseUrl + posterPath)
             let imageRequest = NSURLRequest(url: posterUrl! as URL)
 
+            MBProgressHUD.showAdded(to: self.view, animated: true)
             self.posterImageView.setImageWith(
                 imageRequest as URLRequest,
                 placeholderImage: nil,
@@ -55,6 +57,7 @@ class DetailsViewController: UIViewController {
                         print("Image was cached so just update the image")
                         self.posterImageView.image = image
                     }
+                    MBProgressHUD.hide(for: self.view, animated: true)
             },
                 failure: { (imageRequest, imageResponse, error) -> Void in
                     // do something for the failure condition
