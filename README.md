@@ -1,6 +1,6 @@
-# Project 1 - *Name of App Here*
+# Project 1 - *Movies Viewer*
 
-**Name of your app** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+**Movies Viewer** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
 Time spent: **14** hours spent in total
 
