@@ -42,7 +42,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Vijayanand Sankarasubramanian]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -55,3 +55,8 @@ Describe any challenges encountered while building the app.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+    warning.png icon : Created by Kidiladon from Noun Project
+    now_playing.png icon : Created by CostaGalaktionov from Noun Project
+    top_rated.png icon : Created by Guru from Noun Project
+    movie_info.png icon : Created by Vectors Market from Noun Project
