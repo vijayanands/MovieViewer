@@ -10,15 +10,18 @@ import UIKit
 import AFNetworking
 import MBProgressHUD
 
-class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var movieTableView: UITableView!
-    var movies: [NSDictionary]?
-    var endpoint: String?
-    
     @IBOutlet weak var errorsView: UIView!
     @IBOutlet weak var warningImage: UIImageView!
     @IBOutlet weak var errorHUD: UILabel!
+
+    var movies: [NSDictionary]?
+    var endpoint: String?
+    var isSearching = false;
+    var filteredData: [NSDictionary]?
     
     
     override func viewDidLoad() {
@@ -27,6 +30,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
         movieTableView.dataSource = self
         movieTableView.delegate = self
+        moviesSearchBar.delegate = self
+        moviesSearchBar.returnKeyType = UIReturnKeyType.done
         
         warningImage.image = UIImage(named: "warning")
         errorHUD.text = "Network Error"
@@ -86,6 +91,10 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (isSearching) {
+            return (filteredData?.count)!
+        }
+        
         if let movies = movies {
             return movies.count
         } else {
@@ -96,10 +105,16 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = movieTableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
-        let movie = movies?[indexPath.row]
-        let title = movie?["title"] as! String
-        let overview = movie?["overview"] as! String
-        if let posterPath = movie?["poster_path"] as? String {
+        var movie: NSDictionary
+        if (isSearching) {
+            movie = (filteredData?[indexPath.row])!
+        } else {
+            movie = (movies?[indexPath.row])!
+        }
+        
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        if let posterPath = movie["poster_path"] as? String {
             let posterBaseUrl = "http://image.tmdb.org/t/p/w500"
             let posterUrl = NSURL(string: posterBaseUrl + posterPath)
             let imageRequest = NSURLRequest(url: posterUrl! as URL)
@@ -140,6 +155,19 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         
         print("row \(indexPath.row)")
         return cell
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchBar.text == nil) || (searchBar.text == "") {
+            isSearching = false
+            view.endEditing(true)
+            movieTableView.reloadData()
+        } else {
+            isSearching = true
+            let predicate = NSPredicate(format: "%K == %@", "title", "\(searchText)")
+            filteredData = movies?.filter(predicate.evaluate)
+            movieTableView.reloadData()
+        }
     }
     
     // MARK: - Navigation

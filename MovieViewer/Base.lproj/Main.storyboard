@@ -21,9 +21,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="Gxa-V4-DNL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MovieCell" rowHeight="166" id="0oa-KM-Oxo" customClass="MovieCell" customModule="MovieViewer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="166"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="166"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0oa-KM-Oxo" id="nfx-vB-wtf">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="165.5"/>
@@ -85,6 +90,7 @@
                         <outlet property="errorHUD" destination="mPg-zX-KNw" id="ONF-Rx-GFl"/>
                         <outlet property="errorsView" destination="E4p-Co-6wx" id="r7n-Ox-urF"/>
                         <outlet property="movieTableView" destination="9Tz-cF-Q1L" id="3wH-Wk-0iz"/>
+                        <outlet property="moviesSearchBar" destination="Gxa-V4-DNL" id="bJq-ZI-0lV"/>
                         <outlet property="warningImage" destination="H2W-i5-wnG" id="jjM-Ci-H9R"/>
                     </connections>
                 </viewController>
