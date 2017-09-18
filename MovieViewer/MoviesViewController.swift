@@ -75,6 +75,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 let dictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 print(dictionary)
                 
+                self.errorsView.isHidden = true
                 self.movies = dictionary["results"] as? [NSDictionary]
                 self.movieTableView.reloadData()
             } else {
